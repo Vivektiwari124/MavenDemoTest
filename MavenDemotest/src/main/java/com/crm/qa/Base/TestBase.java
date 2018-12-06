@@ -27,12 +27,21 @@ public class TestBase {
 			e.printStackTrace();
 		}
 		
-		driver = new ChromeDriver();
+		
+	}
+	
+	public void initialization() {
+		String browser= prop.getProperty("browser");
+		if(browser.equals("chrome")){
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\vivek.tiwari\\git\\MavenDemotest\\MavenDemotest\\drivers\\chromedriver.exe");
+			driver= new ChromeDriver();
+		}
+		
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.get(prop.getProperty("browser"));
+		driver.get(prop.getProperty("url"));
 	}
 
 }
